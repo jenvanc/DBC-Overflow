@@ -1,4 +1,14 @@
 <h2><%= @question.title %></h2>
 
+<div>
 by <%= @question.user.username%><br> </br>
 <%= @question.content %>
+</div>
+
+<div>
+<a href="/questions/<%= @question.id %>/edit">Edit</a> |
+<form action="/questions/<%= @question.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
+</div>
