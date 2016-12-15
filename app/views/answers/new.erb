@@ -1,0 +1,5 @@
+<%= erb :'_errors' %>
+<form id="new-answer" action="/questions/<%= @question.id %>/answers" method="post">
+  <textarea name="content">Content here</textarea>
+  <input type="submit" value="Create">
+</form>
