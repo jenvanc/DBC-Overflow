@@ -4,7 +4,7 @@ class CreateQuestions < ActiveRecord::Migration
         t.string :title, null: false, limit: 140
         t.text :content, null: false
         t.belongs_to :user, null: false
-        t.references :answer
+        t.integer :best_answer_id
 
         t.timestamps(null: false)
     end
