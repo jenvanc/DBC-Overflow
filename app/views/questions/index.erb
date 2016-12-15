@@ -1,11 +1,10 @@
 <h1> All questions </h1>
 <ul>
   <% @questions.each do |question| %>
-  <li> <%= question.title %> <br> </br>
-      <%= question.user.username%>
-      <br> </br>
-      <%= question.content %>
-      <br> </br>
+  <li><a href="/questions/<%= question.id %>">
+      <%= question.title %></a> <br> </br>
+      <%= question.user.username%><br> </br>
+      <%= question.content %><br> </br>
   </li>
   <% end %>
 </ul>
