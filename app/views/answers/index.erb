@@ -1,0 +1,11 @@
+<% if @answers %>
+  <ul>
+    <% @answers.each do |answer| %>
+    <li>
+      <%= answer.content %><br>
+      by <%= answer.user.username %>
+      <br><br>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,3 +1,5 @@
+# Question Routes
+
 get '/questions' do
   @questions = Question.all
   erb :'questions/index'
@@ -18,6 +20,7 @@ post '/questions' do
 end
 
 get '/questions/:id' do
+  @answers = Question.find(params[:id]).answers
   @question = Question.find(params[:id])
   erb :'questions/show'
 end
