@@ -1,0 +1,9 @@
+<div>
+  <h2>New Question</h2>
+  <%= erb :'_errors' %>
+  <form class="new-question" action="/questions" method="post">
+    <input type="text" name="title" placeholder="title"><br><br>
+    <textarea name="content">Content</textarea><br><br>
+    <input type="submit" value="Submit">
+  </form>
+<div>
