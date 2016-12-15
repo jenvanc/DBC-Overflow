@@ -16,3 +16,5 @@ by <%= @question.user.username%><br> </br>
 <div>
   <%= erb :'answers/index' %>
 </div>
+
+<a href="/questions/<%= @question.id %>/answers/new">Answer this question...</a>
