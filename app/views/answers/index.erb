@@ -4,6 +4,10 @@
     <li>
       <%= answer.content %><br>
       by <%= answer.user.username %>
+      <% @comments = answer.comments %>
+      <% if @comments.length > 0 %><br>
+        Comment: <%= answer.comments.first.content %>
+      <% end %>
       <br><br>
     </li>
     <% end %>
