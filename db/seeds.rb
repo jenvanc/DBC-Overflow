@@ -27,7 +27,7 @@ end
   user = User.all.sample.id
   voteable_id = Answer.all.sample.id
   voteable_type = Answer
-  Vote.create!(user_id: user, voteable_id: voteable_id, voteable_type: voteable_type)
+  Vote.find_or_create_by(user_id: user, voteable_id: voteable_id, voteable_type: voteable_type)
 end
 
 # Create Question Votes
@@ -35,7 +35,7 @@ end
   user = User.all.sample.id
   voteable_id = Question.all.sample.id
   voteable_type = Question
-  vote = Vote.create!(user_id: user, voteable_id: voteable_id, voteable_type: voteable_type)
+  vote = Vote.find_or_create_by(user_id: user, voteable_id: voteable_id, voteable_type: voteable_type)
 end
 
 # Create Answer Comments
