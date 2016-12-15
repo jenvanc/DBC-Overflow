@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
-  belongs_to :user, :question
+  belongs_to :user
+  belongs_to :question
   has_many :votes, as: :voteable
   has_many :comments, as: :commentable
   validates :content, :user, presence: true
@@ -7,4 +8,5 @@ class Answer < ActiveRecord::Base
   def is_favorite?
     self.question.best_answer == self
   end
+
 end

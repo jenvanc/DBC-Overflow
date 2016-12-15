@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_secure_password
-  validates :password, {length: 6..20}
+  validates :password, length: { minimum: 6 }, on: :create
 end
