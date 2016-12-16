@@ -1,7 +1,10 @@
-<li>
+<li class="answer" id="<%= answer.id %>">
   <%= answer.content %><br>
-  by <%= answer.user.username %>
+
+  by <%= answer.user.username %> - Upvotes: <%= answer.votes.count %>
+
   <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Comment</a>
+
   <% if authorized?(answer.user) %>
     <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit">Edit</a>
     <form action="/questions/<%= answer.question_id %>/answers/<%= answer.id%>" method="post">
@@ -9,8 +12,10 @@
       <input type="submit" value="delete">
     </form>
   <% end %>
+  <%= erb :'votes/_vote_form', locals: {voteable: answer} %>
   <% @comments = answer.comments %>
   <% if @comments.length > 0 %><br>
+  <h5>Comments:</h5>
   <ul>
     <% @comments.each do |comment| %>
       <%= erb :'comments/_each_comment', locals: {comment: comment} %>

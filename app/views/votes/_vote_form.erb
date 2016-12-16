@@ -1,0 +1,9 @@
+<%= erb :'_errors' %>
+
+<% if logged_in? && voteable.votes.where(user_id: current_user).empty?%>
+  <form class="vote-form" action="/votes" method="post">
+    <input type="hidden" name="vote[voteable_id]" value="<%= voteable.id %>">
+    <input type="hidden" name="vote[voteable_type]" value="<%= voteable.class.name %>">
+    <input type="submit" value="Upvote">
+  </form>
+<% end %>
