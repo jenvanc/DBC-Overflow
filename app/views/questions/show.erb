@@ -19,11 +19,8 @@
 </div>
 
 <div> <% if logged_in? %>
-  <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
-
   <%= erb :'comments/_comments_question' %>
-
-
+  <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
     <% end %>
 </div>
 
