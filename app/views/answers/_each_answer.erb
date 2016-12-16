@@ -11,7 +11,7 @@
 
   <% if authorized?(@question.user) && @question.best_answer_id == nil%>
     <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer">Mark as Best Answer</a><br>
-  <% elsif authorized?(@question.user) && @question.best_answer_id != nil %>
+  <% elsif authorized?(@question.user) && @question.best_answer_id == answer.id %>
     <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer/delete">Undo Best Answer</a><br>
   <% end %>
 
