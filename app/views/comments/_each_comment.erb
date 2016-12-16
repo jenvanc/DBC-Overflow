@@ -1,3 +1,10 @@
 <li>
   <%= comment.content %> by <%= comment.user.username %>
+  <% if authorized?(comment.user) %>
+    <a href="/questions/<%= @question.id %>/answers/<%= comment.commentable_id %>/comments/<%=comment.id%>/edit">Edit</a>
+    <form action="/questions/<%= @question.id %>/comments/<%= comment.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+  <% end %>
 </li>

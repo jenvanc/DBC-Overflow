@@ -4,7 +4,14 @@
   by <%= @question.user.username%><br> </br>
   <%= @question.content %>
 </div>
+<div> <% if logged_in? %>
+  <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
 
+  <%= erb :'comments/_comments_question' %>
+
+
+    <% end %>
+</div>
 <div>
   <% if authorized?(@question.user) %>
     <a href="/questions/<%= @question.id %>/edit">Edit</a> |
