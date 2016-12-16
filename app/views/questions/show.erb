@@ -1,38 +1,40 @@
-<div class="question-answers">
+<div class="container">
 
-<div id="question">
-  <h2><%= @question.title %> - Upvotes: <span class="points"><%= @question.votes.count %></span></h2>
-    by <%= @question.user.username%><br>
-    <%= @question.content %>
-    <%= erb :'votes/_vote_form', locals: {voteable: @question} %>
-</div>
+  <div>
+    <h2><%= @question.title %> - Upvotes: <span class="points"><%= @question.votes.count %></span></h2>
+      by <%= @question.user.username%><br>
+      <%= @question.content %>
+      <%= erb :'votes/_vote_form', locals: {voteable: @question} %>
+  </div>
 
-<div>
-  <% if authorized?(@question.user) %>
-    <a href="/questions/<%= @question.id %>/edit">Edit</a> |
-    <form action="/questions/<%= @question.id %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="delete">
-    </form>
-  <% end %>
-</div>
-
-<div> <% if logged_in? %>
-  <%= erb :'comments/_comments_question' %>
-  <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
+  <div>
+    <% if authorized?(@question.user) %>
+      <a href="/questions/<%= @question.id %>/edit">Edit</a> |
+      <form action="/questions/<%= @question.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="delete">
+      </form>
     <% end %>
-</div>
+  </div>
+
+  <div>
+    <% if logged_in? %>
+      <%= erb :'comments/_comments_question' %>
+      <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
+    <% end %>
+  </div>
+
+    <% if logged_in? %>
+      <a class="waves-effect waves-green btn-flat" href="/questions/<%= @question.id %>/answers/new">Answer this question...</a>
+    <% else %>
+      <p>
+        Please log in or register to answer a question
+      </p>
+    <% end %>
 
   <h4>Answers:</h4>
   <div>
     <%= erb :'answers/index' %>
   </div>
 
-  <% if logged_in? %>
-    <a href="/questions/<%= @question.id %>/answers/new">Answer this question...</a>
-  <% else %>
-    <p>
-      Please log in or register to answer a question
-    </p>
-  <% end %>
-  </div>
+</div>
