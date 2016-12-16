@@ -1,28 +1,34 @@
-<h2><%= @question.title %></h2>
+<div class="question-answers">
+
+
+<h2><%= @question.title %> - Upvotes: <span class="points"><%= @question.votes.count %></span></h2>
+
 
 <div>
-  by <%= @question.user.username%><br> </br>
-  <%= @question.content %>
-</div>
+    by <%= @question.user.username%><br> </br>
+    <%= @question.content %>
+    <%= erb :'votes/_vote_form', locals: {voteable: @question} %>
+  </div>
 
-<div>
-  <% if authorized?(@question.user) %>
-    <a href="/questions/<%= @question.id %>/edit">Edit</a> |
-    <form action="/questions/<%= @question.id %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="delete">
-    </form>
+  <div>
+    <% if authorized?(@question.user) %>
+      <a href="/questions/<%= @question.id %>/edit">Edit</a> |
+      <form action="/questions/<%= @question.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="delete">
+      </form>
+    <% end %>
+  </div>
+  <h4>Answers:</h4>
+  <div>
+    <%= erb :'answers/index' %>
+  </div>
+
+  <% if logged_in? %>
+    <a href="/questions/<%= @question.id %>/answers/new">Answer this question...</a>
+  <% else %>
+    <p>
+      Please log in or register to answer a question
+    </p>
   <% end %>
-</div>
-
-<div>
-  <%= erb :'answers/index' %>
-</div>
-
-<% if logged_in? %>
-  <a href="/questions/<%= @question.id %>/answers/new">Answer this question...</a>
-<% else %>
-  <p>
-    Please log in or register to answer a question
-  </p>
-<% end %>
+  </div>
