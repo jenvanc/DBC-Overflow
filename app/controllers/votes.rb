@@ -9,16 +9,15 @@ post '/votes' do
   end
 
   if vote.save
-    # if request.xhr?
-    #   # binding.pry
-    #   content_type :json
-    #   total_points = vote.voteable.votes.count
-    #   id = vote.voteable.id
-    #   { points: total_points }.to_json
-    # else
-    #   redirect "/questions/#{question_id}"
-    # end
-    redirect "/questions/#{question_id}"
+    if request.xhr?
+      # binding.pry
+      content_type :json
+      total_points = vote.voteable.votes.count
+      id = vote.voteable.id
+      { points: total_points }.to_json
+    else
+      redirect "/questions/#{question_id}"
+    end
   else
     @errors = ["You can only upvote once"]
     @question = Question.find(question_id)
