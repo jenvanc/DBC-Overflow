@@ -1,7 +1,15 @@
 <% if @answers %>
   <ul>
     <% @answers.each do |answer| %>
-      <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
+        <% if @question.best_answer_id == answer.id %>
+          <i class="medium material-icons amber-text">grade</i>
+          <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
+        <% end %>
+    <% end %>
+    <% @answers.each do |answer| %>
+      <% if @question.best_answer_id != answer.id %>
+        <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
+      <% end %>
     <% end %>
   </ul>
 <% end %>

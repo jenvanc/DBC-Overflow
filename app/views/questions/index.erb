@@ -3,7 +3,9 @@
   <h1> All questions </h1>
     <% if logged_in? %>
     <div class="new-question-ajax">
-      <a class="ask-question" href="/questions/new">Ask a question</a>
+  
+    <button class="ask-question waves-effect waves-green btn-flat" action="/questions/new">Ask a question</button>
+
       <%= erb :'/questions/_new_question' %>
     </div>
     <% else %>

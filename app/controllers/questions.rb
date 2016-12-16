@@ -59,3 +59,19 @@ delete "/questions/:id" do
   question.destroy
   redirect '/questions'
 end
+
+get "/questions/:question_id/answers/:answer_id/best_answer" do
+  @question = Question.find(params[:question_id])
+  redirect '/' unless authorized?(@question.user)
+  @question.best_answer = Answer.find(params[:answer_id])
+  @question.save
+  redirect "/questions/#{@question.id}"
+end
+
+get "/questions/:question_id/answers/:answer_id/best_answer/delete" do
+  @question = Question.find(params[:question_id])
+  redirect '/' unless authorized?(@question.user)
+  @question.best_answer = nil
+  @question.save
+  redirect "/questions/#{@question.id}"
+end
