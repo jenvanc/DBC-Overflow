@@ -1,20 +1,28 @@
 <h2><%= @question.title %></h2>
 
 <div>
-by <%= @question.user.username%><br> </br>
-<%= @question.content %>
+  by <%= @question.user.username%><br> </br>
+  <%= @question.content %>
 </div>
 
 <div>
-<a href="/questions/<%= @question.id %>/edit">Edit</a> |
-<form action="/questions/<%= @question.id %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-</form>
+  <% if authorized?(@question.user) %>
+    <a href="/questions/<%= @question.id %>/edit">Edit</a> |
+    <form action="/questions/<%= @question.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+  <% end %>
 </div>
 
 <div>
   <%= erb :'answers/index' %>
 </div>
 
-<a href="/questions/<%= @question.id %>/answers/new">Answer this question...</a>
+<% if logged_in? %>
+  <a href="/questions/<%= @question.id %>/answers/new">Answer this question...</a>
+<% else %>
+  <p>
+    Please log in or register to answer a question
+  </p>
+<% end %>
