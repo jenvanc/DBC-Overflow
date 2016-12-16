@@ -1,7 +1,4 @@
 <h1>Edit question: <%= @question.title %> </h1>
-<form class="edit-question" action="/questions/<%= @question.id %>" method="post">
-  <input type="hidden" name="_method" value="put">
-  <input type="text" name="question[title]" placeholder="<%= @question.title %>"><br><br>
-  <textarea name="question[content]"><%= @question.content %></textarea><br><br>
-  <input type="submit" value="Submit">
-</form>
+
+<%= erb :'_errors' %>
+<%= erb :'questions/_form', locals: {question: @question}%>

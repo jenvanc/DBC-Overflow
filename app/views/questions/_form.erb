@@ -1,0 +1,11 @@
+<form action="<%= question_form_action(question) %>" method="post">
+  <% if question.persisted? %>
+    <input type="hidden" name="_method" value="put">
+  <% end %>
+
+  <input type="text" name="question[title]" placeholder="<%= question.title %>"><br><br>
+
+  <textarea rows="4" cols="50" name="question[content]"><%= question.content %></textarea><br><br>
+
+  <input type="submit" value="<%= submit_button_value(question) %>">
+</form>

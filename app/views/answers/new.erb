@@ -1,5 +1,8 @@
+<h1><%= @question.title %></h1>
+
 <%= erb :'_errors' %>
+
 <form id="new-answer" action="/questions/<%= @question.id %>/answers" method="post">
-  <textarea name="content">Content here</textarea>
-  <input type="submit" value="Create">
+  <textarea rows="4" cols="50" name="content" placeholder="Your answer"></textarea>
+  <input type="submit" value="Answer">
 </form>

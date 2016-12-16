@@ -1,7 +1,7 @@
 <% if @answers %>
   <ul>
     <% @answers.each do |answer| %>
-    <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
+      <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
     <% end %>
   </ul>
 <% end %>
