@@ -5,6 +5,11 @@
 
   <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Comment</a>
 
+  <% if authorized?(@question.user) && @question.best_answer_id == nil%>
+    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer">Best Answer</a>
+  <% elsif authorized?(@question.user) && @question.best_answer_id != nil %>
+    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer/delete">Undo Best Answer </a>
+  <% end %>
   <% if authorized?(answer.user) %>
     <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit">Edit</a>
     <form action="/questions/<%= answer.question_id %>/answers/<%= answer.id%>" method="post">
