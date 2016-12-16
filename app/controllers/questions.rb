@@ -32,13 +32,14 @@ end
 
 put '/questions/:id' do
   @question = Question.find(params[:id])
+  redirect '/' unless authorized?(@question.user)
   @question.update_attributes(params[:question])
-
   redirect "/questions/#{params[:id]}"
 end
 
 delete "/questions/:id" do
   @question = Question.find(params[:id])
+  redirect '/' unless authorized?(@question.user)
   @question.destroy
   redirect '/questions'
 end

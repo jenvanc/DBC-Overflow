@@ -1,11 +1,13 @@
 <li>
   <%= answer.content %><br>
   by <%= answer.user.username %>
-  <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit">Edit</a>
-  <form action="/questions/<%= answer.question_id %>/answers/<%= answer.id%>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="delete">
-  </form>
+  <% if authorized?(answer.user) %>
+    <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit">Edit</a>
+    <form action="/questions/<%= answer.question_id %>/answers/<%= answer.id%>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+  <% end %>
   <% @comments = answer.comments %>
   <% if @comments.length > 0 %><br>
   <ul>

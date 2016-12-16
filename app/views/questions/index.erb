@@ -1,4 +1,11 @@
 <h1> All questions </h1>
+  <% if logged_in? %>
+    <a href="/questions/new">Ask a question</a>
+  <% else %>
+    <p>
+      Please log in or register to ask a question
+    </p>
+  <% end %>
 <ul>
   <% @questions.each do |question| %>
   <li><a href="/questions/<%= question.id %>">
