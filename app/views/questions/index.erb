@@ -1,18 +1,22 @@
-<div class="container">
+<div class="container main-page">
 
   <h1> All questions </h1>
     <% if logged_in? %>
+    <div class="new-question-ajax">
+  
     <button class="ask-question waves-effect waves-green btn-flat" action="/questions/new">Ask a question</button>
+
       <%= erb :'/questions/_new_question' %>
+    </div>
     <% else %>
       <p>
         Please log in or register to ask a question
       </p>
     <% end %>
-  <ul>
-    <% @questions.each do |question| %>
-    <li><a href="/questions/<%= question.id %>">
-        <%= question.title %></a> by <%= question.user.username%>
+  <ul class="question-list">
+    <% @questions.sort_by {|question| question.updated_at }.reverse.each do |question| %>
+    <li class="question-title"><a href="/questions/<%= question.id %>">
+        <%= question.title %></a> by <%= question.user.username%><br></br>
     </li>
     <% end %>
   </ul>

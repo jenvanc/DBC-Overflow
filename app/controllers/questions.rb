@@ -14,7 +14,12 @@ post '/questions' do
   @question.user_id = current_user.id
 
   if @question.save
-    redirect '/questions'
+    if request.xhr?
+      content_type :json
+      { id: @question.id, title: @question.title, content: @question.content, author: @question.user.username }.to_json
+    else
+      redirect '/questions'
+    end
   else
     @errors = @question.errors.full_messages
     erb :'questions/new'
