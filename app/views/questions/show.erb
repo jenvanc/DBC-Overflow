@@ -1,24 +1,32 @@
 <div class="question-answers">
 
-
 <h2><%= @question.title %> - Upvotes: <span class="points"><%= @question.votes.count %></span></h2>
 
+<div>
+  by <%= @question.user.username%><br>
+  <%= @question.content %>
+  <%= erb :'votes/_vote_form', locals: {voteable: @question} %>
+</div>
 
 <div>
-    by <%= @question.user.username%><br> </br>
-    <%= @question.content %>
-    <%= erb :'votes/_vote_form', locals: {voteable: @question} %>
-  </div>
+  <% if authorized?(@question.user) %>
+    <a href="/questions/<%= @question.id %>/edit">Edit</a> |
+    <form action="/questions/<%= @question.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
+  <% end %>
+</div>
 
-  <div>
-    <% if authorized?(@question.user) %>
-      <a href="/questions/<%= @question.id %>/edit">Edit</a> |
-      <form action="/questions/<%= @question.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="delete">
-      </form>
+<div> <% if logged_in? %>
+  <a href="/questions/<%= @question.id %>/comments/new">Comment</a>
+
+  <%= erb :'comments/_comments_question' %>
+
+
     <% end %>
-  </div>
+</div>
+
   <h4>Answers:</h4>
   <div>
     <%= erb :'answers/index' %>

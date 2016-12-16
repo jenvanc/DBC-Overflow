@@ -1,6 +1,10 @@
 <li class="answer" id="<%= answer.id %>">
   <%= answer.content %><br>
+
   by <%= answer.user.username %> - Upvotes: <%= answer.votes.count %>
+
+  <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Comment</a>
+
   <% if authorized?(answer.user) %>
     <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit">Edit</a>
     <form action="/questions/<%= answer.question_id %>/answers/<%= answer.id%>" method="post">
