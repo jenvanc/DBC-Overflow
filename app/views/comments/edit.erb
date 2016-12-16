@@ -1,0 +1,8 @@
+<h1>Edit comment: <%= @comment.content %></h1>
+<%= erb :'_errors' %>
+
+<form action="/questions/<%= @question.id %>/comments/<%= @comment.id %>"< method="post">
+  <input type="hidden" name="_method" value="put">
+  <textarea rows="4" cols="50" name="comment[content]"> <%= @comment.content %> </textarea><br><br>
+  <input type="submit" value="<%= submit_button_value(@question) %>">
+</form>

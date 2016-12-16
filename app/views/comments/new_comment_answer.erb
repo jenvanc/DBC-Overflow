@@ -1,0 +1,8 @@
+<h1>Comment on: <%= @answer.content %></h1>
+
+<%= erb :'_errors' %>
+
+<form id="new-comment" action="/questions/<%= @question.id %>/answers/<%= @answer.id %>/comments" method="post">
+  <textarea rows="4" cols="50" name="content" placeholder="Your comment"></textarea>
+  <input type="submit" value="comment">
+</form>

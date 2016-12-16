@@ -1,6 +1,6 @@
 get '/questions/:question_id/answers/new' do
   @question = Question.find(params[:question_id])
-  redirect '/' unless authorized?(@question.user)
+  redirect '/' unless logged_in?
   erb :'answers/new'
 end
 
