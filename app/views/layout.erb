@@ -13,24 +13,54 @@
   <link rel="stylesheet" href="/css/application.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <script src="/js/application.js"></script>
 
   <title></title>
 </head>
 <body>
   <nav>
-    <a href="/">Home</a><br>
+   <div class="nav-wrapper #1b5e20 green darken-4">
+    <a href="/" class="brand-logo center">DBC Overflow</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
     <% if logged_in? %>
-      <%= current_user.username %><br>
-      <form action="/sessions" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input class="button" type="submit" value="logout">
-      </form>
+      <li><%= current_user.username %></li>
+      <li>
+        <form action="/sessions" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input class="button waves-effect waves-green btn-flat white-text" type="submit" value="logout">
+        </form>
+     </li>
     <% else %>
-      <a href="/users/new">Register</a><br>
-      <a href="/sessions/new">Log In</a>
+      <li><a href="/users/new">Register</a></li>
+      <li><a href="/sessions/new">Log In</a></li>
     <% end %>
+    </ul>
+   </div>
   </nav>
   <%= yield %>
+  <footer class="page-footer #1b5e20 green darken-4">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Team DBC Overflow</h5>
+        <p class="grey-text text-lighten-4">Questions? Checkout our github, introduce yourself to the team.</p>
+      </div>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="https://github.com/jenvanc/DBC-Overflow">Github Repo</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://github.com/jenvanc">Jenna</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://github.com/pkolodgy">Patrick</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://github.com/felixvdi">Felix</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://github.com/nadavp3">Nadav</a></li>
+        </ul>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

@@ -1,17 +1,19 @@
-<h1> All questions </h1>
-  <% if logged_in? %>
-    <a href="/questions/new">Ask a question</a>
-  <% else %>
-    <p>
-      Please log in or register to ask a question
-    </p>
-  <% end %>
-<ul>
-  <% @questions.each do |question| %>
-  <li><a href="/questions/<%= question.id %>">
-      <%= question.title %></a> <br> </br>
-      <%= question.user.username%><br> </br>
-      <%= question.content %><br> </br>
-  </li>
-  <% end %>
-</ul>
+<div class="container">
+
+  <h1> All questions </h1>
+    <% if logged_in? %>
+      <a class="ask-question" href="/questions/new">Ask a question</a>
+      <%= erb :'/questions/_new_question' %>
+    <% else %>
+      <p>
+        Please log in or register to ask a question
+      </p>
+    <% end %>
+  <ul>
+    <% @questions.each do |question| %>
+    <li><a href="/questions/<%= question.id %>">
+        <%= question.title %></a> by <%= question.user.username%>
+    </li>
+    <% end %>
+  </ul>
+</div>
