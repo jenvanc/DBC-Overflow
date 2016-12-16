@@ -2,8 +2,8 @@
 <br>
   <li>
     <%= comment.content %> by <%= comment.user.username %>
-    <% if authorized?(comment.user) %>
-      <a href="/questions/<%= @question.id %>/answers/<%= comment.commentable_id %>/comments/<%=comment.id%>/edit">Edit</a>
+    <% if authorized?(comment.user) %><br>
+    <button class="ask-question waves-effect waves-green btn-flat" action="/questions/<%= @question.id %>/answers/<%= comment.commentable_id %>/comments/<%=comment.id%>/edit">Edit</button><br>
       <form action="/questions/<%= @question.id %>/comments/<%= comment.id %>" method="post">
         <input type="hidden" name="_method" value="delete">
         <input class="waves-effect waves-green btn-flat" type="submit" value="delete">

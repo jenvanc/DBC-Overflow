@@ -2,7 +2,7 @@
   <ul>
     <% @answers.each do |answer| %>
         <% if @question.best_answer_id == answer.id %>
-          <i class="material-icons #ffc107 amber">grade</i>
+          <i class="medium material-icons amber-text">grade</i>
           <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
         <% end %>
     <% end %>

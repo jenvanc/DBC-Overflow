@@ -4,7 +4,8 @@
   <li class="answer" id="<%= answer.id %>">
     <%= answer.content %><br>
 
-    by <%= answer.user.username %> Upvotes: <span class="points"><%= answer.votes.count %></span><br>
+    by <%= answer.user.username %> <br>
+    Upvotes: <span class="points"><%= answer.votes.count %></span><br>
 
     <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Comment</a><br>
 
