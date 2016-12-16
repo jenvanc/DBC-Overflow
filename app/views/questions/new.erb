@@ -2,8 +2,10 @@
   <h2>New Question</h2>
   <%= erb :'_errors' %>
   <form class="new-question" action="/questions" method="post">
-    <input type="text" name="title" placeholder="title"><br><br>
-    <textarea name="content">Content</textarea><br><br>
+    <input type="text" name="question[title]" placeholder="title"><br><br>
+
+    <textarea rows="4" cols="50" name="question[content]" placeholder="Ask your question"></textarea><br><br>
+
     <input type="submit" value="Submit">
   </form>
 <div>

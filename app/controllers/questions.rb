@@ -10,7 +10,9 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  @question = Question.new(title: params[:title], content: params[:content], user: current_user)
+  @question = Question.new(params[:question])
+  @question.user_id = current_user.id
+
   if @question.save
     redirect '/questions'
   else
@@ -20,8 +22,8 @@ post '/questions' do
 end
 
 get '/questions/:id' do
-  @answers = Question.find(params[:id]).answers
   @question = Question.find(params[:id])
+  @answers = @question.answers
   erb :'questions/show'
 end
 
@@ -34,13 +36,20 @@ end
 put '/questions/:id' do
   @question = Question.find(params[:id])
   redirect '/' unless authorized?(@question.user)
-  @question.update_attributes(params[:question])
-  redirect "/questions/#{params[:id]}"
+
+  @question.assign_attributes(params[:question])
+  if @question.save
+    redirect "/questions"
+  else
+    @errors = ["Please fill in all fields"]
+    erb :'questions/edit'
+  end
 end
 
 delete "/questions/:id" do
-  @question = Question.find(params[:id])
-  redirect '/' unless authorized?(@question.user)
-  @question.destroy
+  question = Question.find(params[:id])
+  redirect '/' unless authorized?(question.user)
+
+  question.destroy
   redirect '/questions'
 end
