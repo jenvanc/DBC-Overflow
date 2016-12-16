@@ -3,7 +3,8 @@
   <div class="question-answers">
 
     <div>
-      <h2><%= @question.title %> Upvotes: <span class="points"><%= @question.votes.count %></span></h2>
+      <h2><%= @question.title %><br>
+        Upvotes: <span class="points"><%= @question.votes.count %></span></h2>
         by <%= @question.user.username%><br>
         <%= @question.content %>
         <%= erb :'votes/_vote_form', locals: {voteable: @question} %>
