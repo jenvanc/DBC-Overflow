@@ -27,6 +27,7 @@ end
 
 get '/questions/:id/edit' do
   @question = Question.find(params[:id])
+  redirect '/' unless authorized?(@question.user)
   erb :'questions/edit'
 end
 
