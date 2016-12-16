@@ -1,5 +1,5 @@
 # Create Users
-  20.times do
+  30.times do
     username = Faker::Internet.user_name
     email = Faker::Internet.email
     password = Faker::Internet.password
@@ -7,7 +7,7 @@
   end
 
 # Create Questions
-20.times do
+40.times do
   title = Faker::Lorem.sentence(5)
   content = Faker::Lorem.paragraph(4)
   user = User.all.sample.id
@@ -15,7 +15,7 @@
 end
 
 # Create Answers
-75.times do
+100.times do
   user = User.all.sample.id
   question = Question.all.sample.id
   content = content = Faker::Lorem.paragraph(2)
@@ -23,7 +23,7 @@ end
 end
 
 # Create Answer Votes
-20.times do
+200.times do
   user = User.all.sample.id
   voteable_id = Answer.all.sample.id
   voteable_type = Answer
@@ -31,7 +31,7 @@ end
 end
 
 # Create Question Votes
-20.times do
+200.times do
   user = User.all.sample.id
   voteable_id = Question.all.sample.id
   voteable_type = Question
