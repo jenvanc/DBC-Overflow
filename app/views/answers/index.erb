@@ -1,7 +1,16 @@
 <% if @answers %>
   <ul>
+
     <% @answers.each do |answer| %>
-      <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
+        <% if @question.best_answer_id == answer.id %>
+          <h4>This is the best/correct answer</h4>
+          <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
+        <% end %>
+    <% end %>
+    <% @answers.each do |answer| %>
+      <% if @question.best_answer_id != answer.id %>
+        <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
+      <% end %>
     <% end %>
   </ul>
 <% end %>

@@ -1,18 +1,33 @@
+
 <div class="container">
   <br>
   <li class="answer" id="<%= answer.id %>">
     <%= answer.content %><br>
-
+    
     by <%= answer.user.username %> Upvotes: <span class="points"><%= answer.votes.count %></span>
 
     <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Comment</a>
 
-    <% if authorized?(answer.user) %>
-      <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit">Edit</a>
-      <form action="/questions/<%= answer.question_id %>/answers/<%= answer.id%>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input class="waves-effect waves-green btn-flat" type="submit" value="delete">
-      </form>
+  <% if authorized?(@question.user) && @question.best_answer_id == nil%>
+    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer">Best Answer</a>
+  <% elsif authorized?(@question.user) && @question.best_answer_id != nil %>
+    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer/delete">Undo Best Answer </a>
+  <% end %>
+
+  <% if authorized?(answer.user) %>
+    <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit">Edit</a>
+    <form action="/questions/<%= answer.question_id %>/answers/<%= answer.id%>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input class="waves-effect waves-green btn-flat" type="submit" value="delete">
+    </form>
+  <% end %>
+  <%= erb :'votes/_vote_form', locals: {voteable: answer} %>
+  <% @comments = answer.comments %>
+  <% if @comments.length > 0 %><br>
+  <h5>Comments:</h5>
+  <ul>
+    <% @comments.each do |comment| %>
+      <%= erb :'comments/_each_comment', locals: {comment: comment} %>
     <% end %>
     <%= erb :'votes/_vote_form', locals: {voteable: answer} %>
     <% @comments = answer.comments %>

@@ -5,6 +5,7 @@ class Answer < ActiveRecord::Base
   has_many :comments, as: :commentable
   validates :content, :user, presence: true
 
+
   def is_favorite?
     self.question.best_answer == self
   end
