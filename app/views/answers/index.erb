@@ -1,9 +1,8 @@
 <% if @answers %>
   <ul>
-
     <% @answers.each do |answer| %>
         <% if @question.best_answer_id == answer.id %>
-          <h4>This is the best/correct answer</h4>
+          <i class="material-icons #ffc107 amber">grade</i>
           <%= erb :'/answers/_each_answer', locals: {answer: answer} %>
         <% end %>
     <% end %>

@@ -3,15 +3,15 @@
   <br>
   <li class="answer" id="<%= answer.id %>">
     <%= answer.content %><br>
-    
-    by <%= answer.user.username %> Upvotes: <span class="points"><%= answer.votes.count %></span>
 
-    <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Comment</a>
+    by <%= answer.user.username %> Upvotes: <span class="points"><%= answer.votes.count %></span><br>
+
+    <a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Comment</a><br>
 
   <% if authorized?(@question.user) && @question.best_answer_id == nil%>
-    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer">Best Answer</a>
+    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer">Mark as Best Answer</a><br>
   <% elsif authorized?(@question.user) && @question.best_answer_id != nil %>
-    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer/delete">Undo Best Answer </a>
+    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/best_answer/delete">Undo Best Answer</a><br>
   <% end %>
 
   <% if authorized?(answer.user) %>
@@ -37,6 +37,7 @@
         <%= erb :'comments/_each_comment', locals: {comment: comment} %>
       <% end %>
     </ul>
+      <% end %>
     <% end %>
     <br><br>
   </li>
